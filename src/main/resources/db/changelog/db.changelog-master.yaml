@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson1.yaml
+  - changeSet:
+      id: 1
+      author: your_liquibase_username
+      changes:
+        - createTable:
+            tableName: tutorials
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: published
+                  type: BOOLEAN
+
+#  - changeSet:
+#      id: 2
+#      author: your_liquibase_username
+#      comment: "Create admin user"
+#      changes:
+#        - insert:
+#            tableName: users
+#            columns:
+#              - column:
+#                  name: username
+#                  value: "admin"
+#              - column:
+#                  name: password
+#                  value: "admin"
+#              - column:
+#                  name: email
+#                  value: "admin@server.com"
+#        - insert:
+#            tableName: users
+#            columns:
+#              - column:
+#                  name: username
+#                  value: "guest"
+#              - column:
+#                  name: password
+#                  value: "guest"
+#              - column:
+#                  name: email
+#                  value: "guest@server.com"
+#      rollback:
+#        - delete:
+#            tableName: users
+#            where: username in ('admin', 'guest')
